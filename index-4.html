@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Bhutku 💗</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{min-height:100vh;overflow:hidden;font-family:Arial,sans-serif;background:radial-gradient(circle at 15% 20%,#ffd9e9 0,transparent 30%),radial-gradient(circle at 85% 80%,#ffe8f1 0,transparent 35%),linear-gradient(135deg,#fff0f6,#ffd3e4);color:#8e3156}
+.screen{display:none;width:100%;min-height:100vh;justify-content:center;align-items:center;padding:20px;text-align:center}
+.screen.active{display:flex}
+.card{width:min(92%,430px);padding:35px 25px;border-radius:30px;background:rgba(255,255,255,.58);backdrop-filter:blur(12px);box-shadow:0 15px 40px rgba(180,70,110,.18);border:1px solid rgba(255,255,255,.8)}
+h1{font-family:cursive;font-size:42px;color:#c83f70;margin-bottom:15px}
+h2{font-family:cursive;font-size:32px;color:#c83f70;margin-bottom:18px}
+p{font-size:18px;line-height:1.6;margin-bottom:25px}
+.heart{font-size:75px;animation:pulse 1.3s infinite;margin-bottom:15px}
+@keyframes pulse{50%{transform:scale(1.15)}}
+button{border:none;padding:14px 25px;border-radius:30px;font-size:17px;font-weight:bold;cursor:pointer;margin:8px;transition:.25s;box-shadow:0 7px 18px rgba(180,60,100,.18)}
+button:hover{transform:scale(1.05)}
+.primary,.yes{background:#ef6f9d;color:white}
+.no{background:white;color:#d65382;border:2px solid #f19abb;position:relative}
+#noMessage{min-height:30px;font-weight:bold;color:#c63d6d;margin-top:10px}
+.candle{font-size:100px;margin:15px;animation:float 2s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-10px)}}
+.flame{display:inline-block;animation:flicker .5s infinite alternate}
+@keyframes flicker{from{transform:scale(1)}to{transform:scale(1.15)}}
+.cake{font-size:130px;margin:15px;animation:cakeFloat 2s infinite}
+@keyframes cakeFloat{50%{transform:translateY(-8px)}}
+.letter{text-align:left;background:rgba(255,255,255,.65);padding:25px;border-radius:22px;line-height:1.8;font-size:17px}
+.firework{position:fixed;font-size:30px;animation:boom 1.5s forwards;pointer-events:none}
+@keyframes boom{0%{transform:scale(.2);opacity:0}30%{transform:scale(1.4);opacity:1}100%{transform:scale(1);opacity:0}}
+.floating-heart{position:fixed;font-size:25px;pointer-events:none;animation:heartUp 2.5s linear forwards}
+@keyframes heartUp{from{transform:translateY(0) scale(.7);opacity:1}to{transform:translateY(-100vh) scale(1.4);opacity:0}}
+.small{font-size:14px;opacity:.7;margin-top:15px}
+</style>
+</head>
+<body>
+
+<section id="openScreen" class="screen active">
+<div class="card">
+<div class="heart">💗</div>
+<h1>Hey Bhutku!</h1>
+<p>I made a little surprise just for you... 🎀</p>
+<button class="primary" onclick="openQuestion()">Open Your Surprise 🎁</button>
+</div>
+</section>
+
+<section id="questionScreen" class="screen">
+<div class="card">
+<div class="heart">💗</div>
+<h2>Do You Love Me? ❤️</h2>
+<p id="noMessage">Choose carefully, Bhutku 👀</p>
+<div>
+<button class="yes" onclick="yesAnswer()">YES ❤️</button>
+<button id="noButton" class="no" onclick="noAnswer()">NO 😏</button>
+</div>
+<div class="small">There is only one correct answer... 👀</div>
+</div>
+</section>
+
+<section id="yesScreen" class="screen">
+<div class="card">
+<div class="heart">😍</div>
+<h1>I KNEW IT!</h1>
+<p>My Bhutku loves me! 🥹💗</p>
+<button class="primary" onclick="showCandle()">Continue ✨</button>
+</div>
+</section>
+
+<section id="candleScreen" class="screen">
+<div class="card">
+<h2>Make a Wish ✨</h2>
+<div class="candle">🕯️<span class="flame">🔥</span></div>
+<p>Close your eyes and make a beautiful wish... 💗</p>
+<button class="primary" onclick="blowCandle()">Blow The Candle 💨</button>
+</div>
+</section>
+
+<section id="cakeScreen" class="screen">
+<div class="card">
+<h2>Your Birthday Cake 🎂</h2>
+<div id="cake" class="cake">🎂</div>
+<p>Now comes the sweetest part! 🥰</p>
+<button class="primary" onclick="cutCake()">Cut The Cake 🔪🎂</button>
+</div>
+</section>
+
+<section id="letterScreen" class="screen">
+<div class="card">
+<div class="heart">💗</div>
+<h2>For My Bhutku 💌</h2>
+<div class="letter">
+<p>Happy Birthday to the most special person in my world. 💗</p>
+<p>Bhutku, you are not just someone special to me... you are a beautiful part of my life. 🥹❤️</p>
+<p>I hope your smile always stays this cute, your heart always stays happy, and every little dream of yours comes true. ✨</p>
+<p>Thank you for being you. And yes... I love you more than I can explain. 🫶🏻</p>
+<p style="text-align:center;font-weight:bold;font-size:21px;">Happy Birthday, Bhutku! 🎂💗</p>
+</div>
+</div>
+</section>
+
+<script>
+let noCount=0;
+function hideAll(){document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"))}
+function openQuestion(){hideAll();document.getElementById("questionScreen").classList.add("active")}
+function yesAnswer(){hideAll();document.getElementById("yesScreen").classList.add("active")}
+function noAnswer(){
+ noCount++;
+ const button=document.getElementById("noButton"),message=document.getElementById("noMessage");
+ if(noCount===1)message.innerHTML="Are you sure, Bhutku? 👀";
+ else if(noCount===2)message.innerHTML="NO again?! 😭";
+ else if(noCount===3)message.innerHTML="You don't love me? 🥺💔";
+ else if(noCount===4)message.innerHTML="My little heart is broken 😭😂";
+ else message.innerHTML="Okay okay... just say YES! 😂❤️";
+ moveNoButton();
+}
+function moveNoButton(){
+ const b=document.getElementById("noButton");
+ const maxX=Math.max(10,window.innerWidth-b.offsetWidth-15);
+ const maxY=Math.max(10,window.innerHeight-b.offsetHeight-15);
+ b.style.position="fixed";b.style.left=Math.max(10,Math.random()*maxX)+"px";b.style.top=Math.max(10,Math.random()*maxY)+"px";
+}
+function showCandle(){hideAll();document.getElementById("candleScreen").classList.add("active")}
+function blowCandle(){createSmoke();setTimeout(()=>{hideAll();document.getElementById("cakeScreen").classList.add("active")},700)}
+function cutCake(){
+ document.getElementById("cake").innerHTML="🍰";
+ createFireworks();createHearts();
+ setTimeout(()=>{hideAll();document.getElementById("letterScreen").classList.add("active")},2200);
+}
+function createFireworks(){
+ const e=["💗","💖","💕","✨","💞","🌸"];
+ for(let i=0;i<45;i++){
+  const f=document.createElement("div");f.className="firework";f.innerHTML=e[Math.floor(Math.random()*e.length)];
+  f.style.left=Math.random()*100+"vw";f.style.top=Math.random()*100+"vh";
+  document.body.appendChild(f);setTimeout(()=>f.remove(),1600);
+ }
+}
+function createHearts(){
+ const e=["💗","💖","💕","💘","💞"];
+ for(let i=0;i<30;i++){
+  const h=document.createElement("div");h.className="floating-heart";h.innerHTML=e[Math.floor(Math.random()*e.length)];
+  h.style.left=Math.random()*100+"vw";h.style.top=(80+Math.random()*20)+"vh";h.style.animationDelay=Math.random()+"s";
+  document.body.appendChild(h);setTimeout(()=>h.remove(),3000);
+ }
+}
+function createSmoke(){
+ const s=document.createElement("div");s.innerHTML="💨";s.style.position="fixed";s.style.fontSize="60px";s.style.left="50%";s.style.top="40%";s.style.transform="translate(-50%,-50%)";s.style.transition="1s";s.style.opacity="0";
+ document.body.appendChild(s);setTimeout(()=>{s.style.opacity="1";s.style.transform="translate(-50%,-100%) scale(1.5)"},50);setTimeout(()=>s.remove(),1200);
+}
+</script>
+</body>
+</html>
